@@ -4,8 +4,8 @@ public class Anagram{
 	//辞書の吸い上げ
 	ArrayList<String> dictionary = new ArrayList<String>();
 	dictionary.add("email");
-	dictionary.add("amile"); //a mile
-	dictionary.add("alime"); //a lime
+	dictionary.add("a mile"); //a mile
+	dictionary.add("a lime"); //a lime
 	//辞書のソーティング、ハッシュでやるのがいい気がするよ
 	for(int i = 0; i < dictionary.size(); i++){
 	    dictionary.set(i, sort(dictionary.get(i)));
@@ -34,7 +34,11 @@ public class Anagram{
 	//trimspaceする。メソッドはお外に
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
-	return String.valueOf(letters);
+	String sortedWord = String.valueOf(letters);
+	int index = sortedWord.indexOf(" ");
+	int lastIndex = sortedWord.indexOf(" ");
+	if(index != -1)sortedWord = sortedWord.substring(index, lastIndex);
+	return sortedWord;
     }
     
     //nCr
