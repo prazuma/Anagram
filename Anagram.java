@@ -27,6 +27,8 @@ public class Anagram{
 	ArrayList<String> dictionary = readFile("test.txt");
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	ArrayList<String> words;
+
+	String str = "";
 	for(int i = 0; i < dictionary.size(); i++){
 	    String word = dictionary.get(i);
 	    String key = sort(word);
@@ -39,11 +41,21 @@ public class Anagram{
 	    hashDictionary.put(key, words);
 	}
 	ArrayList<String> keyList = new ArrayList<String>(hashDictionary.keySet());
-	String str = "";
 	for(int i = 0; i < keyList.size(); i++){
-	    System.out.println(keyList.get(i));
+	    str += "0";
+	    str += "\n";
+	    String key = keyList.get(i);
+	    str += key + "\n";
+	    ArrayList<String> item = new ArrayList<String>();
+	    item = hashDictionary.get(key);
+	    for(int j = 0; j < item.size(); j++){
+		str += item.get(j);
+		str += "\n";
+	    }
 	}
-
+	str += "0";
+	createFile("test2.txt", str);
+	
 	System.out.println("-----------");
 
 	String word = "lameiwe";//キーボード入力にする（優先度最低）
