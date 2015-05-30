@@ -62,11 +62,16 @@ public class Anagram{
 	ArrayList<String> allCombination = new ArrayList<String>();
 	allCombination.addAll(list1);
 	allCombination.addAll(list2);
+	allCombination = removeDuplication(allCombination);
+	return allCombination;
+    }
+
+    public static ArrayList<String> removeDuplication(ArrayList<String> list){
 	ArrayList<String> uniqueCombination = new ArrayList<String>();
-	for(int i = 0; i < allCombination.size(); i++){
-	    String element = allCombination.get(i);
+	for(int i = 0; i < list.size(); i++){
+	    String element = list.get(i);
 	    if(uniqueCombination.contains(element)){
-		allCombination.remove(element);
+		list.remove(element);
 	    } else {
 		uniqueCombination.add(element);
 	    }
