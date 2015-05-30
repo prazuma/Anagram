@@ -1,16 +1,37 @@
 import java.util.*;
 public class Anagram{
     public static void main(String[] args){
-	String word = "abcdef";
-	word = sort(word);
-	ArrayList<String> combinations = combination(word, word.length(), 3);
-	for(int i = 0; i < combinations.size(); i++){
-	    System.out.println(combinations.get(i));
+	//辞書の吸い上げ
+	ArrayList<String> dictionary = new ArrayList<String>();
+	dictionary.add("email");
+	dictionary.add("amile"); //a mile
+	dictionary.add("alime"); //a lime
+	//辞書のソーティング、ハッシュでやるのがいい気がするよ
+	for(int i = 0; i < dictionary.size(); i++){
+	    dictionary.set(i, sort(dictionary.get(i)));
 	}
-	System.out.println("total:" + combinations.size());
+	String word = "lameiwe";//キーボード入力にする（優先度最低）
+	word = sort(word);
+	System.out.println(word);
+	//抜かす文字列を徐々に増やしていく
+	int total = 0;//デバッグ用
+	for(int i = 0; i < word.length(); i++){
+	    //判定の場所を変える。見つかったのがわかっているのに止めないのは非常に無駄
+	    ArrayList<String> combinations = combination(word, word.length(), i);
+	    for(int j = 0; j < combinations.size(); j++){
+		String anagram = combinations.get(j);
+		System.out.println(anagram);
+		if(isMatch(anagram, dictionary)){
+		    System.out.println("TRUE");
+		}
+	    }
+	    total += combinations.size();
+	}
+	System.out.println("total: " + total);
     }
 
     public static String sort(String word){
+	//trimspaceする。メソッドはお外に
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
 	return String.valueOf(letters);
@@ -19,9 +40,7 @@ public class Anagram{
     //nCr
     //TODO: 今度staticじゃないのにする
     public static ArrayList<String> combination(String word, int n, int r){
-	if(r == 0){
-	    return null;
-	}
+	//重複の場合がまちがっている
 	if(r == 1){
 	    ArrayList<String> list = new ArrayList<String>();
 	    for(int i = 0; i < n; i++){
@@ -29,7 +48,7 @@ public class Anagram{
 	    }
 	    return list;
 	}
-	if(r == n){
+	if(r == n || r == 0){
 	    ArrayList<String> list = new ArrayList<String>();
 	    list.add(word);
 	    return list;
@@ -54,5 +73,9 @@ public class Anagram{
 	    list.set(i, head + element);
 	}
 	return list;
+    }
+
+    public static boolean isMatch(String word, ArrayList<String> dictionary){
+	return dictionary.contains(word);
     }
 }
