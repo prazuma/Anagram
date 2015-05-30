@@ -9,30 +9,37 @@ public class Setup{
 	craeteDictionary(fileNameTest);
     }
     */
-    
-    public void createDictionaryFile(String fileName){
-	ArrayList<String> dictionary = readFile(fileName);
-	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
-	ArrayList<String> words;
 
-	String str = "";
-	for(int i = 0; i < dictionary.size(); i++){
-	    String word = dictionary.get(i);
-	    String key = sort(word);
-	    if(hashDictionary.containsKey(key)){
-		words = hashDictionary.get(key);
-	    } else {
-		words = new ArrayList<String>();
+    public void createDictionaryFile(String fileName){
+	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	try {
+	    FileReader fr = new FileReader(fileName);
+	    BufferedReader br = new BufferedReader(fr);
+	    String word, key;
+	    ArrayList<String> values;
+	    while((word = br.readLine()) != null){
+		key = sort(word);
+		if(hashDictionary.get(key) == null){
+		    values = new ArrayList<String>();
+		    values.add(word);
+		} else {
+		    values = hashDictionary.get(key);
+		    values.add(word);
+		}
+		hashDictionary.put(key, values);
 	    }
-	    words.add(word);
-	    hashDictionary.put(key, words);
+	    br.close();
+	} catch (IOException e) {
+	    System.out.println("IOException: " + e);
 	}
-	System.out.println("hashMap1");
+	System.out.println("hashMap");
+	System.out.println(hashDictionary.size());
+	String str = "";
 	ArrayList<String> keyList = new ArrayList<String>(hashDictionary.keySet());
-	for(int i = 0; i < keyList.size(); i++){
-	    str += "0";
-	    str += "\n";
-	    String key = keyList.get(i);
+	int last = keyList.size();
+	while(keyList.size() > 0){
+	    str += "0" + "\n";
+	    String key = keyList.remove();
 	    str += key + "\n";
 	    ArrayList<String> item = new ArrayList<String>();
 	    item = hashDictionary.get(key);
@@ -40,6 +47,8 @@ public class Setup{
 		str += item.get(j);
 		str += "\n";
 	    }
+	    last--;
+	    if(last % 10000 == 0)System.out.println("REMAIN: " + last);
 	}
 	str += "0";
 	createFile("test2.txt", str);
@@ -68,6 +77,7 @@ public class Setup{
 	    BufferedReader br = new BufferedReader(fr);
 	    String str;
 	    while((str = br.readLine()) != null){
+		System.out.println(str);
 		text.add(str);
 	    }
 	    br.close();

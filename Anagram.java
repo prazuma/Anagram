@@ -10,7 +10,7 @@ public class Anagram{
 	File file = new File("dictionary.txt");
         if(!(file.exists())){
 	    Setup setup = new Setup();
-	    setup.createDictionaryFile(fileNameTest);
+	    setup.createDictionaryFile(fileName);
 	}
 
 
