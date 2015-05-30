@@ -3,14 +3,30 @@ public class Anagram{
     public static void main(String[] args){
 	//辞書の吸い上げ
 	ArrayList<String> dictionary = new ArrayList<String>();
-	dictionary.add("e");
+
+	dictionary.add("a");
 	dictionary.add("email");
 	dictionary.add("a mile"); //a mile
 	dictionary.add("a lime"); //a lime
+	
 	//辞書のソーティング、ハッシュでやるのがいい気がするよ
 	for(int i = 0; i < dictionary.size(); i++){
 	    dictionary.set(i, sort(dictionary.get(i)));
 	}
+
+	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	ArrayList<String> words;
+	for(int i = 0; i < dictionary.size(); i++){
+	    String word = dictionary.get(i);
+	    String key = sort(word);
+	    if(hashDictionary.containsKey(key)){
+		words = hashDictionary.get(key);
+	    } else {
+		words = new ArrayList<String>();
+	    }
+	    hashDictionary.put(key, words);
+	}
+	
 	String word = "lameiwe";//キーボード入力にする（優先度最低）
 	word = sort(word);
 	//抜かす文字列を徐々に増やしていく
