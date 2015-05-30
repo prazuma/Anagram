@@ -3,7 +3,7 @@ public class Anagram{
     public static void main(String[] args){
 	String word = "abcdef";
 	word = sort(word);
-	ArrayList<String> combinations = combination(word, word.length(), 2);
+	ArrayList<String> combinations = combination(word, word.length(), 3);
 	for(int i = 0; i < combinations.size(); i++){
 	    System.out.println(combinations.get(i));
 	}
@@ -11,7 +11,9 @@ public class Anagram{
     }
 
     public static String sort(String word){
-	
+	char[] letters = word.toCharArray();
+	Arrays.sort(letters);
+	return String.valueOf(letters);
     }
     
     //nCr
