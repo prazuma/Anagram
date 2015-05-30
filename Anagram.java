@@ -18,18 +18,13 @@ public class Anagram{
 	ArrayList<String> textList = readFile("dictionary.txt");
 	
 	//TODO: dictionary.txtからHashMapをつくる
-	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
-	hashDictionary = setHashMap(textList);
+	//HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	//hashDictionary = setHashMap(textList);
 
-	/*
+
 	//TODO: words.txtからdictionary.txtをつくる
-	//辞書の代わり
-	ArrayList<String> dictionary = new ArrayList<String>();
-	dictionary.add("a");
-	dictionary.add("email");
-	dictionary.add("a mile");
-	dictionary.add("a lime");
 
+	ArrayList<String> dictionary = readFile("test.txt");
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	ArrayList<String> words;
 	for(int i = 0; i < dictionary.size(); i++){
@@ -43,7 +38,14 @@ public class Anagram{
 	    words.add(word);
 	    hashDictionary.put(key, words);
 	}
-	*/
+	ArrayList<String> keyList = new ArrayList<String>(hashDictionary.keySet());
+	String str = "";
+	for(int i = 0; i < keyList.size(); i++){
+	    System.out.println(keyList.get(i));
+	}
+
+	System.out.println("-----------");
+
 	String word = "lameiwe";//キーボード入力にする（優先度最低）
 	word = sort(word);
 	for(int i = word.length() - 1; i >= 0; i--){
@@ -63,14 +65,26 @@ public class Anagram{
 	    System.out.println(list.get(i));
 	}
     }
-
+    
     public static void createFile(String fileName){
-	File newfile = new File(fileName);
+	createFile(fileName, "");
+    }
+
+    public static void createFile(String fileName, String str){
 	try {
-	    newfile.createNewFile();
+	    File file = new File(fileName);
+	    FileWriter fw = new FileWriter(file);
+	    BufferedWriter bw = new BufferedWriter(fw);
+	    PrintWriter pw = new PrintWriter(bw);
+	    pw.println(str);
+	    pw.close();
 	} catch (IOException e) {
-	    System.out.println("IOException" + e);
+	    System.out.println("IOException: " + e);
 	}
+
+    }
+
+    public static void createDictionary(){
     }
     
     public static ArrayList<String> readFile(String filePath){
@@ -90,13 +104,13 @@ public class Anagram{
     }
 
     public static HashMap<String, ArrayList<String>> setHashMap(ArrayList<String> textList){
-		HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	int i = 0;
 	String key = "";
 	ArrayList<String> elements = new ArrayList<String>();
 	String element = "";
 	boolean isKey = false;
-
+	
 	while(i < textList.size()){
 	    element = textList.get(i++);
 	    if(element.equals("0")){
