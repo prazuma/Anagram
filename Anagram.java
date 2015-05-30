@@ -8,25 +8,32 @@ public class Anagram{
 	dictionary.add("email");
 	dictionary.add("a mile"); //a mile
 	dictionary.add("a lime"); //a lime
+	//dictionary.add("email");
 	
+
 	//辞書のソーティング、ハッシュでやるのがいい気がするよ
+	/*
 	for(int i = 0; i < dictionary.size(); i++){
 	    dictionary.set(i, sort(dictionary.get(i)));
 	}
-
+	*/
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	ArrayList<String> words;
 	for(int i = 0; i < dictionary.size(); i++){
 	    String word = dictionary.get(i);
 	    String key = sort(word);
+	    System.out.println("key: " + key);
 	    if(hashDictionary.containsKey(key)){
 		words = hashDictionary.get(key);
 	    } else {
 		words = new ArrayList<String>();
 	    }
+	    words.add(word);
 	    hashDictionary.put(key, words);
 	}
-	
+	ArrayList<String> test = hashDictionary.get("aeilm");
+	System.out.println("debug: " + test.size());
+	/*
 	String word = "lameiwe";//キーボード入力にする（優先度最低）
 	word = sort(word);
 	//抜かす文字列を徐々に増やしていく
@@ -35,7 +42,8 @@ public class Anagram{
 	    ArrayList<String> combinations = combination(word, word.length(), i);
 	    for(int j = 0; j < combinations.size(); j++){
 		String anagram = combinations.get(j);
-		if(isMatch(anagram, dictionary)){
+		if(isMatch(anagram, hashDictionary)){
+		    //System.out.println(hashDictionary.get(anagram).get(0));
 		    System.out.println(anagram);
 		    return;
 		}
@@ -43,6 +51,7 @@ public class Anagram{
 	    total += combinations.size();
 	}
 	System.out.println("total: " + total);
+	*/
     }
 
     public static String sort(String word){
@@ -54,9 +63,12 @@ public class Anagram{
     }
 
     public static String trimSpace(String word){
-	int index = word.indexOf(" ");
-	int lastIndex = word.indexOf(" ");
-	if(index != -1)word = word.substring(index, lastIndex);
+	if(word.length() == 1) return word;
+	int lastIndex = 0;
+	if(word.startsWith(" ")){
+	    lastIndex = word.lastIndexOf(" ");
+	    word = word.substring(lastIndex + 1);
+	}
 	return word;
     }
     
@@ -111,7 +123,7 @@ public class Anagram{
 	return list;
     }
 
-    public static boolean isMatch(String word, ArrayList<String> dictionary){
-	return dictionary.contains(word);
+    public static boolean isMatch(String word, HashMap<String,ArrayList<String>> hashDictionary){
+	return hashDictionary.containsKey(word);
     }
 }
