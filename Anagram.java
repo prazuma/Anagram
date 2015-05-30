@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.*;
+
 public class Anagram{
     public static void main(String[] args){
 	//辞書の吸い上げ
@@ -9,6 +11,30 @@ public class Anagram{
 	  dictionary.txtから読込みを行う。
 	 */
 
+	//dictionary.txtの作成
+	/*
+	File newfile = new File("dictionary.txt");
+	try {
+	    newfile.createNewFile();
+	} catch (IOException e) {
+	    System.out.println("IOException" + e);
+	}
+	*/
+	
+	//dictionary.txtの読込み
+	try {
+	    FileReader fr = new FileReader("dictionary.txt");
+	    BufferedReader br = new BufferedReader(fr);
+	    String str;
+	    while((str = br.readLine()) != null){
+		System.out.println(str);
+	    }
+	    br.close();
+	} catch (IOException e) {
+	    System.out.println("IOException" + e);
+	}
+	   
+	
 	//辞書の代わり
 	ArrayList<String> dictionary = new ArrayList<String>();
 	dictionary.add("a");
