@@ -2,12 +2,18 @@ import java.util.*;
 public class Anagram{
     public static void main(String[] args){
 	String word = "abcdef";
+	word = sort(word);
 	ArrayList<String> combinations = combination(word, word.length(), 2);
 	for(int i = 0; i < combinations.size(); i++){
 	    System.out.println(combinations.get(i));
 	}
 	System.out.println("total:" + combinations.size());
     }
+
+    public static String sort(String word){
+	
+    }
+    
     //nCr
     //TODO: 今度staticじゃないのにする
     public static ArrayList<String> combination(String word, int n, int r){
