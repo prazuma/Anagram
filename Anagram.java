@@ -3,28 +3,18 @@ import java.io.*;
 
 public class Anagram{
     public static void main(String[] args){
-	//辞書の吸い上げ
-	/*
-	  /usr/share/dict/wordsのファイルはwords.txt
-	  辞書ファイルdictionary.txt
-	  dictionary.txtがフォルダ内になければ、words.txtからdictionary.txtを作成する。
-	  dictionary.txtから読込みを行う。
-	 */
 
-	/*
-	  dictionary.txtがあるか確認
-	  ない：createDictionaryFile("/usr/share/dict/words");
-	  ある：次へ
-	 */
 	String fileNameTest = "test.txt";
 	String fileName = "/usr/share/dict/words";
 	
 	File file = new File("dictionary.txt");
         if(!(file.exists())){
-	    createDictionaryFile(fileNameTest);
+	    Setup setup = new Setup();
+	    setup.createDictionaryFile(fileNameTest);
 	}
-	
-	/*	
+
+
+	/*
 	//dictionary.txtの読込み
 	ArrayList<String> textList = readFile("dictionary.txt");
 	
@@ -57,76 +47,6 @@ public class Anagram{
 	}
     }
     
-    public static void createFile(String fileName){
-	createFile(fileName, "");
-    }
-
-    public static void createFile(String fileName, String str){
-	try {
-	    File file = new File(fileName);
-	    FileWriter fw = new FileWriter(file);
-	    BufferedWriter bw = new BufferedWriter(fw);
-	    PrintWriter pw = new PrintWriter(bw);
-	    pw.println(str);
-	    pw.close();
-	} catch (IOException e) {
-	    System.out.println("IOException: " + e);
-	}
-
-    }
-
-    public static void createDictionaryFile(String fileName){
-	ArrayList<String> dictionary = readFile(fileName);
-	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
-	ArrayList<String> words;
-
-	String str = "";
-	for(int i = 0; i < dictionary.size(); i++){
-	    String word = dictionary.get(i);
-	    String key = sort(word);
-	    if(hashDictionary.containsKey(key)){
-		words = hashDictionary.get(key);
-	    } else {
-		words = new ArrayList<String>();
-	    }
-	    words.add(word);
-	    hashDictionary.put(key, words);
-	}
-	System.out.println("hashMap1");
-	ArrayList<String> keyList = new ArrayList<String>(hashDictionary.keySet());
-	for(int i = 0; i < keyList.size(); i++){
-	    str += "0";
-	    str += "\n";
-	    String key = keyList.get(i);
-	    str += key + "\n";
-	    ArrayList<String> item = new ArrayList<String>();
-	    item = hashDictionary.get(key);
-	    for(int j = 0; j < item.size(); j++){
-		str += item.get(j);
-		str += "\n";
-	    }
-	}
-	str += "0";
-	createFile("test2.txt", str);
-
-    }
-    
-    public static ArrayList<String> readFile(String filePath){
-	ArrayList<String> text = new ArrayList<String>();
-	try {
-	    FileReader fr = new FileReader(filePath);
-	    BufferedReader br = new BufferedReader(fr);
-	    String str;
-	    while((str = br.readLine()) != null){
-		text.add(str);
-	    }
-	    br.close();
-	} catch (IOException e) {
-	    System.out.println("IOException" + e);
-	}
-	return text;
-    }
-
     public static HashMap<String, ArrayList<String>> setHashMap(ArrayList<String> textList){
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	int i = 0;
