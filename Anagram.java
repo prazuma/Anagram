@@ -12,14 +12,7 @@ public class Anagram{
 	 */
 
 	//dictionary.txtの作成
-	/*
-	File newfile = new File("dictionary.txt");
-	try {
-	    newfile.createNewFile();
-	} catch (IOException e) {
-	    System.out.println("IOException" + e);
-	}
-	*/
+	//createFile("dictionary.txt");
 	
 	//dictionary.txtの読込み
 	ArrayList<String> text = readFile("dictionary.txt");
@@ -62,6 +55,15 @@ public class Anagram{
     public static void print(ArrayList<String> list){
 	for(int i = 0; i < list.size(); i++){
 	    System.out.println(list.get(i));
+	}
+    }
+
+    public static void createFile(String fileName){
+	File newfile = new File(fileName);
+	try {
+	    newfile.createNewFile();
+	} catch (IOException e) {
+	    System.out.println("IOException" + e);
 	}
     }
     
