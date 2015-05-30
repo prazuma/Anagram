@@ -18,45 +18,12 @@ public class Anagram{
 	ArrayList<String> textList = readFile("dictionary.txt");
 	
 	//TODO: dictionary.txtからHashMapをつくる
-	//HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
-	//hashDictionary = setHashMap(textList);
+	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	hashDictionary = setHashMap(textList);
 
 
 	//TODO: words.txtからdictionary.txtをつくる
-
-	ArrayList<String> dictionary = readFile("test.txt");
-	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
-	ArrayList<String> words;
-
-	String str = "";
-	for(int i = 0; i < dictionary.size(); i++){
-	    String word = dictionary.get(i);
-	    String key = sort(word);
-	    if(hashDictionary.containsKey(key)){
-		words = hashDictionary.get(key);
-	    } else {
-		words = new ArrayList<String>();
-	    }
-	    words.add(word);
-	    hashDictionary.put(key, words);
-	}
-	ArrayList<String> keyList = new ArrayList<String>(hashDictionary.keySet());
-	for(int i = 0; i < keyList.size(); i++){
-	    str += "0";
-	    str += "\n";
-	    String key = keyList.get(i);
-	    str += key + "\n";
-	    ArrayList<String> item = new ArrayList<String>();
-	    item = hashDictionary.get(key);
-	    for(int j = 0; j < item.size(); j++){
-		str += item.get(j);
-		str += "\n";
-	    }
-	}
-	str += "0";
-	createFile("test2.txt", str);
-	
-	System.out.println("-----------");
+	createDictionaryFile("test.txt");
 
 	String word = "lameiwe";//キーボード入力にする（優先度最低）
 	word = sort(word);
@@ -96,7 +63,39 @@ public class Anagram{
 
     }
 
-    public static void createDictionary(){
+    public static void createDictionaryFile(String fileName){
+	ArrayList<String> dictionary = readFile(fileName);
+	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	ArrayList<String> words;
+
+	String str = "";
+	for(int i = 0; i < dictionary.size(); i++){
+	    String word = dictionary.get(i);
+	    String key = sort(word);
+	    if(hashDictionary.containsKey(key)){
+		words = hashDictionary.get(key);
+	    } else {
+		words = new ArrayList<String>();
+	    }
+	    words.add(word);
+	    hashDictionary.put(key, words);
+	}
+	ArrayList<String> keyList = new ArrayList<String>(hashDictionary.keySet());
+	for(int i = 0; i < keyList.size(); i++){
+	    str += "0";
+	    str += "\n";
+	    String key = keyList.get(i);
+	    str += key + "\n";
+	    ArrayList<String> item = new ArrayList<String>();
+	    item = hashDictionary.get(key);
+	    for(int j = 0; j < item.size(); j++){
+		str += item.get(j);
+		str += "\n";
+	    }
+	}
+	str += "0";
+	createFile("test2.txt", str);
+
     }
     
     public static ArrayList<String> readFile(String filePath){
