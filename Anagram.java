@@ -15,8 +15,64 @@ public class Anagram{
 	//createFile("dictionary.txt");
 	
 	//dictionary.txtの読込み
-	ArrayList<String> text = readFile("dictionary.txt");
+	ArrayList<String> textList = readFile("dictionary.txt");
+	System.out.println("textList.size(): " + textList.size());
+	//TODO: dictionary.txtからHashMapをつくる
+	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	int i = 0;
+	String key = "";
+	ArrayList<String> elements = new ArrayList<String>();
+	String element = "";
+	boolean isKey = false;
+
+	System.out.println("before while");
+	while(i < textList.size()){
+	    element = textList.get(i++);
+	    System.out.println(element);
+	    if(element.equals("0")){
+		isKey = true;
+		if(!(key.equals(""))){
+		    ArrayList<String> copy = new ArrayList<String>();
+		    copy.addAll(elements);
+		    hashDictionary.put(key, copy);
+		    System.out.println("pushed");
+		    System.out.println("KEY: " + key);
+		    print(elements);
+		    elements.clear();
+		    key = "";
+		    System.out.println("clear");
+		}
+
+		continue;
+	    }
+	    if(isKey){
+		key = element;
+		System.out.println("Change Key: " + key);
+		isKey = false;
+	    } else {
+		elements.add(element);
+		System.out.println("Added: " + element);
+	    }
+	}
+	System.out.println("=====");
+	System.out.println("after while");
+	//	System.out.println("test");
 	
+	/*
+	ArrayList<String> test = new ArrayList<String>();
+	test = hashDictionary.get("a");
+	if(test.isEmpty())System.out.println("EMPTY");
+
+	for(int j = 0; j < test.size(); j++){
+	    System.out.println(test.get(j));
+	}
+	System.out.println(test.size());
+	*/
+	
+	print(hashDictionary.get("a"));
+	print(hashDictionary.get("aeilm"));
+	/*	
+	//TODO: words.txtからdictionary.txtをつくる
 	//辞書の代わり
 	ArrayList<String> dictionary = new ArrayList<String>();
 	dictionary.add("a");
@@ -50,6 +106,7 @@ public class Anagram{
 		}
 	    }
 	}
+	*/
     }
 
     public static void print(ArrayList<String> list){
