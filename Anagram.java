@@ -3,6 +3,7 @@ public class Anagram{
     public static void main(String[] args){
 	//辞書の吸い上げ
 	ArrayList<String> dictionary = new ArrayList<String>();
+	dictionary.add("e");
 	dictionary.add("email");
 	dictionary.add("a mile"); //a mile
 	dictionary.add("a lime"); //a lime
@@ -12,17 +13,15 @@ public class Anagram{
 	}
 	String word = "lameiwe";//キーボード入力にする（優先度最低）
 	word = sort(word);
-	System.out.println(word);
 	//抜かす文字列を徐々に増やしていく
 	int total = 0;//デバッグ用
-	for(int i = 0; i < word.length(); i++){
-	    //判定の場所を変える。見つかったのがわかっているのに止めないのは非常に無駄
+	for(int i = word.length() - 1; i >= 0; i--){
 	    ArrayList<String> combinations = combination(word, word.length(), i);
 	    for(int j = 0; j < combinations.size(); j++){
 		String anagram = combinations.get(j);
-		System.out.println(anagram);
 		if(isMatch(anagram, dictionary)){
-		    System.out.println("TRUE");
+		    System.out.println(anagram);
+		    return;
 		}
 	    }
 	    total += combinations.size();
