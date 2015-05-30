@@ -34,24 +34,28 @@ public class Setup{
 	}
 	System.out.println("hashMap");
 	System.out.println(hashDictionary.size());
-	String str = "";
+	StringBuilder sb = new StringBuilder();
 	ArrayList<String> keyList = new ArrayList<String>(hashDictionary.keySet());
 	int last = keyList.size();
-	while(keyList.size() > 0){
-	    str += "0" + "\n";
-	    String key = keyList.remove();
-	    str += key + "\n";
+	for(int i = 0; i < keyList.size(); i++){
+	    sb.append("0" + "\n");
+	    //str += "0" + "\n";
+	    String key = keyList.get(i);
+	    sb.append(key + "\n");
+	    //str += key + "\n";
 	    ArrayList<String> item = new ArrayList<String>();
 	    item = hashDictionary.get(key);
 	    for(int j = 0; j < item.size(); j++){
-		str += item.get(j);
-		str += "\n";
+		sb.append(item.get(j) + "\n");
+		//str += item.get(j);
+		//str += "\n";
 	    }
 	    last--;
 	    if(last % 10000 == 0)System.out.println("REMAIN: " + last);
 	}
-	str += "0";
-	createFile("test2.txt", str);
+	sb.append("0");
+	//str += "0";
+	createFile("test2.txt", sb.toString());
     }
 
     private void createFile(String fileName){
