@@ -3,26 +3,16 @@ public class Anagram{
     public static void main(String[] args){
 	//辞書の吸い上げ
 	ArrayList<String> dictionary = new ArrayList<String>();
-
 	dictionary.add("a");
 	dictionary.add("email");
-	dictionary.add("a mile"); //a mile
-	dictionary.add("a lime"); //a lime
-	//dictionary.add("email");
-	
+	dictionary.add("a mile");
+	dictionary.add("a lime");
 
-	//辞書のソーティング、ハッシュでやるのがいい気がするよ
-	/*
-	for(int i = 0; i < dictionary.size(); i++){
-	    dictionary.set(i, sort(dictionary.get(i)));
-	}
-	*/
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	ArrayList<String> words;
 	for(int i = 0; i < dictionary.size(); i++){
 	    String word = dictionary.get(i);
 	    String key = sort(word);
-	    System.out.println("key: " + key);
 	    if(hashDictionary.containsKey(key)){
 		words = hashDictionary.get(key);
 	    } else {
@@ -31,27 +21,19 @@ public class Anagram{
 	    words.add(word);
 	    hashDictionary.put(key, words);
 	}
-	ArrayList<String> test = hashDictionary.get("aeilm");
-	System.out.println("debug: " + test.size());
-	/*
+
 	String word = "lameiwe";//キーボード入力にする（優先度最低）
 	word = sort(word);
-	//抜かす文字列を徐々に増やしていく
-	int total = 0;//デバッグ用
 	for(int i = word.length() - 1; i >= 0; i--){
 	    ArrayList<String> combinations = combination(word, word.length(), i);
 	    for(int j = 0; j < combinations.size(); j++){
 		String anagram = combinations.get(j);
 		if(isMatch(anagram, hashDictionary)){
-		    //System.out.println(hashDictionary.get(anagram).get(0));
-		    System.out.println(anagram);
+		    System.out.println(hashDictionary.get(anagram).get(0));
 		    return;
 		}
 	    }
-	    total += combinations.size();
 	}
-	System.out.println("total: " + total);
-	*/
     }
 
     public static String sort(String word){
