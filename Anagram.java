@@ -16,12 +16,14 @@ public class Anagram{
 	  ない：createDictionaryFile("/usr/share/dict/words");
 	  ある：次へ
 	 */
+	String fileNameTest = "test.txt";
+	String fileName = "/usr/share/dict/words";
+	
 	File file = new File("dictionary.txt");
         if(!(file.exists())){
-	    System.out.println("none");
-	} else {
-	    System.out.println("exists");
+	    createDictionaryFile(fileNameTest);
 	}
+	
 	/*	
 	//dictionary.txtの読込み
 	ArrayList<String> textList = readFile("dictionary.txt");
@@ -90,6 +92,7 @@ public class Anagram{
 	    words.add(word);
 	    hashDictionary.put(key, words);
 	}
+	System.out.println("hashMap1");
 	ArrayList<String> keyList = new ArrayList<String>(hashDictionary.keySet());
 	for(int i = 0; i < keyList.size(); i++){
 	    str += "0";
