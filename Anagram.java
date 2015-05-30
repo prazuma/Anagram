@@ -21,11 +21,7 @@ public class Anagram{
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	hashDictionary = setHashMap(textList);
 
-	print(hashDictionary.get("a"));
-	print(hashDictionary.get("aeilm"));
-	System.out.println("============");
-	
-	/*	
+	/*
 	//TODO: words.txtからdictionary.txtをつくる
 	//辞書の代わり
 	ArrayList<String> dictionary = new ArrayList<String>();
@@ -47,7 +43,7 @@ public class Anagram{
 	    words.add(word);
 	    hashDictionary.put(key, words);
 	}
-
+	*/
 	String word = "lameiwe";//キーボード入力にする（優先度最低）
 	word = sort(word);
 	for(int i = word.length() - 1; i >= 0; i--){
@@ -60,7 +56,6 @@ public class Anagram{
 		}
 	    }
 	}
-	*/
     }
 
     public static void print(ArrayList<String> list){
