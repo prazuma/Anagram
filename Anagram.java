@@ -31,14 +31,18 @@ public class Anagram{
     }
 
     public static String sort(String word){
-	//trimspaceする。メソッドはお外に
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
 	String sortedWord = String.valueOf(letters);
-	int index = sortedWord.indexOf(" ");
-	int lastIndex = sortedWord.indexOf(" ");
-	if(index != -1)sortedWord = sortedWord.substring(index, lastIndex);
+	sortedWord = trimSpace(sortedWord);	
 	return sortedWord;
+    }
+
+    public static String trimSpace(String word){
+	int index = word.indexOf(" ");
+	int lastIndex = word.indexOf(" ");
+	if(index != -1)word = word.substring(index, lastIndex);
+	return word;
     }
     
     //nCr
