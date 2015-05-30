@@ -2,13 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class Setup{
-    /*
-    public void Setup(){
-	String fileNameTest = "test.txt";
-	String fileName = "/usr/share/dict/words";
-	craeteDictionary(fileNameTest);
-    }
-    */
 
     public void createDictionaryFile(String fileName){
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
@@ -32,29 +25,19 @@ public class Setup{
 	} catch (IOException e) {
 	    System.out.println("IOException: " + e);
 	}
-	System.out.println("hashMap");
-	System.out.println(hashDictionary.size());
 	StringBuilder sb = new StringBuilder();
 	ArrayList<String> keyList = new ArrayList<String>(hashDictionary.keySet());
-	int last = keyList.size();
 	for(int i = 0; i < keyList.size(); i++){
 	    sb.append("0" + "\n");
-	    //str += "0" + "\n";
 	    String key = keyList.get(i);
 	    sb.append(key + "\n");
-	    //str += key + "\n";
 	    ArrayList<String> item = new ArrayList<String>();
 	    item = hashDictionary.get(key);
 	    for(int j = 0; j < item.size(); j++){
 		sb.append(item.get(j) + "\n");
-		//str += item.get(j);
-		//str += "\n";
 	    }
-	    last--;
-	    if(last % 10000 == 0)System.out.println("REMAIN: " + last);
 	}
 	sb.append("0");
-	//str += "0";
 	createFile("test2.txt", sb.toString());
     }
 
@@ -74,22 +57,7 @@ public class Setup{
 	    System.out.println("IOException: " + e);
 	}
     }
-    public ArrayList<String> readFile(String filePath){
-	ArrayList<String> text = new ArrayList<String>();
-	try {
-	    FileReader fr = new FileReader(filePath);
-	    BufferedReader br = new BufferedReader(fr);
-	    String str;
-	    while((str = br.readLine()) != null){
-		System.out.println(str);
-		text.add(str);
-	    }
-	    br.close();
-	} catch (IOException e) {
-	    System.out.println("IOException" + e);
-	}
-	return text;
-    }
+
     public String sort(String word){
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
