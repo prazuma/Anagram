@@ -16,7 +16,13 @@ public class Anagram{
 	  ない：createDictionaryFile("/usr/share/dict/words");
 	  ある：次へ
 	 */
-	
+	File file = new File("dictionary.txt");
+        if(!(file.exists())){
+	    System.out.println("none");
+	} else {
+	    System.out.println("exists");
+	}
+	/*	
 	//dictionary.txtの読込み
 	ArrayList<String> textList = readFile("dictionary.txt");
 	
@@ -40,6 +46,7 @@ public class Anagram{
 		}
 	    }
 	}
+	*/
     }
 
     public static void print(ArrayList<String> list){
