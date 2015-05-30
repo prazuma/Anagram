@@ -22,19 +22,19 @@ public class Anagram{
 	*/
 	
 	//dictionary.txtの読込み
+	ArrayList<String> text = new ArrayList<String>();
 	try {
 	    FileReader fr = new FileReader("dictionary.txt");
 	    BufferedReader br = new BufferedReader(fr);
 	    String str;
 	    while((str = br.readLine()) != null){
-		System.out.println(str);
+		text.add(str);
 	    }
 	    br.close();
 	} catch (IOException e) {
 	    System.out.println("IOException" + e);
 	}
-	   
-	
+
 	//辞書の代わり
 	ArrayList<String> dictionary = new ArrayList<String>();
 	dictionary.add("a");
