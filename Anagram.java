@@ -2,6 +2,14 @@ import java.util.*;
 public class Anagram{
     public static void main(String[] args){
 	//辞書の吸い上げ
+	/*
+	  /usr/share/dict/wordsのファイルはwords.txt
+	  辞書ファイルdictionary.txt
+	  dictionary.txtがフォルダ内になければ、words.txtからdictionary.txtを作成する。
+	  dictionary.txtから読込みを行う。
+	 */
+
+	//辞書の代わり
 	ArrayList<String> dictionary = new ArrayList<String>();
 	dictionary.add("a");
 	dictionary.add("email");
