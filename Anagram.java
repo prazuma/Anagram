@@ -22,19 +22,8 @@ public class Anagram{
 	*/
 	
 	//dictionary.txtの読込み
-	ArrayList<String> text = new ArrayList<String>();
-	try {
-	    FileReader fr = new FileReader("dictionary.txt");
-	    BufferedReader br = new BufferedReader(fr);
-	    String str;
-	    while((str = br.readLine()) != null){
-		text.add(str);
-	    }
-	    br.close();
-	} catch (IOException e) {
-	    System.out.println("IOException" + e);
-	}
-
+	ArrayList<String> text = readFile("dictionary.txt");
+	
 	//辞書の代わり
 	ArrayList<String> dictionary = new ArrayList<String>();
 	dictionary.add("a");
@@ -68,6 +57,28 @@ public class Anagram{
 		}
 	    }
 	}
+    }
+
+    public static void print(ArrayList<String> list){
+	for(int i = 0; i < list.size(); i++){
+	    System.out.println(list.get(i));
+	}
+    }
+    
+    public static ArrayList<String> readFile(String filePath){
+	ArrayList<String> text = new ArrayList<String>();
+	try {
+	    FileReader fr = new FileReader(filePath);
+	    BufferedReader br = new BufferedReader(fr);
+	    String str;
+	    while((str = br.readLine()) != null){
+		text.add(str);
+	    }
+	    br.close();
+	} catch (IOException e) {
+	    System.out.println("IOException" + e);
+	}
+	return text;
     }
 
     public static String sort(String word){
