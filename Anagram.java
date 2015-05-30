@@ -18,40 +18,12 @@ public class Anagram{
 	ArrayList<String> textList = readFile("dictionary.txt");
 	
 	//TODO: dictionary.txtからHashMapをつくる
-	/*
-	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
-	int i = 0;
-	String key = "";
-	ArrayList<String> elements = new ArrayList<String>();
-	String element = "";
-	boolean isKey = false;
-
-	while(i < textList.size()){
-	    element = textList.get(i++);
-	    if(element.equals("0")){
-		isKey = true;
-		if(!(key.equals(""))){
-		    ArrayList<String> copy = new ArrayList<String>();
-		    copy.addAll(elements);
-		    hashDictionary.put(key, copy);
-		    elements.clear();
-		    key = "";
-		}
-		continue;
-	    }
-	    if(isKey){
-		key = element;
-		isKey = false;
-	    } else {
-		elements.add(element);
-	    }
-	}
-	*/
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	hashDictionary = setHashMap(textList);
 
 	print(hashDictionary.get("a"));
 	print(hashDictionary.get("aeilm"));
+	System.out.println("============");
 	
 	/*	
 	//TODO: words.txtからdictionary.txtをつくる
