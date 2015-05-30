@@ -17,7 +17,7 @@ public class Anagram{
 	int total = 0;//デバッグ用
 	for(int i = 0; i < word.length(); i++){
 	    //判定の場所を変える。見つかったのがわかっているのに止めないのは非常に無駄
-	    HashSet<String> combinations = combination(word, word.length(), i);
+	    ArrayList<String> combinations = combination(word, word.length(), i);
 	    for(int j = 0; j < combinations.size(); j++){
 		String anagram = combinations.get(j);
 		System.out.println(anagram);
@@ -39,29 +39,19 @@ public class Anagram{
     
     //nCr
     //TODO: 今度staticじゃないのにする
-    public static HashSet<String> combination(String word, int n, int r){
+    public static ArrayList<String> combination(String word, int n, int r){
 	if(r == 1){
-	    HashSet<String> list = new HashSet<String>();
+	    ArrayList<String> list = new ArrayList<String>();
 	    for(int i = 0; i < n; i++){
 		list.add(word.substring(i, i+1));
 	    }
 	    return list;
 	}
 	if(r == n || r == 0){
-	    HashSet<String> list = new HashSet<String>();
+	    ArrayList<String> list = new ArrayList<String>();
 	    list.add(word);
 	    return list;
 	}
-	HashSet<String> list1 = new HashSet<String>();
-	String head = word.substring(0, 1);
-	list1 = combination(word.substring(1), n-1, r-1);
-	list1 = combine(head, list1);
-	HashSet<String> list2 = new HashSet<String>();
-	head = word.substring(0, 1);
-	list2 = combination(word.substring(1), n-1, r);
-	HashSet<String> allCombination = new HashSet<String>();
-
-	/*
 	ArrayList<String> list1 = new ArrayList<String>();
 	String head = word.substring(0, 1);
 	list1 = combination(word.substring(1), n-1, r-1);
@@ -70,14 +60,22 @@ public class Anagram{
 	head = word.substring(0, 1);
 	list2 = combination(word.substring(1), n-1, r);
 	ArrayList<String> allCombination = new ArrayList<String>();
-	*/
 	allCombination.addAll(list1);
 	allCombination.addAll(list2);
-	return allCombination;
+	ArrayList<String> uniqueCombination = new ArrayList<String>();
+	for(int i = 0; i < allCombination.size(); i++){
+	    String element = allCombination.get(i);
+	    if(uniqueCombination.contains(element)){
+		allCombination.remove(element);
+	    } else {
+		uniqueCombination.add(element);
+	    }
+	}
+	return uniqueCombination;
     }
 
     //TODO: combinationと一緒に別のにもってく
-    public static HashSet<String> combine(String head, HashSet<String> list){
+    public static ArrayList<String> combine(String head, ArrayList<String> list){
 	for(int i = 0; i < list.size(); i++){
 	    String element = list.get(i);
 	    list.set(i, head + element);
