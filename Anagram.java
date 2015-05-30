@@ -11,8 +11,11 @@ public class Anagram{
 	  dictionary.txtから読込みを行う。
 	 */
 
-	//dictionary.txtの作成
-	//createFile("dictionary.txt");
+	/*
+	  dictionary.txtがあるか確認
+	  ない：createDictionaryFile("/usr/share/dict/words");
+	  ある：次へ
+	 */
 	
 	//dictionary.txtの読込み
 	ArrayList<String> textList = readFile("dictionary.txt");
