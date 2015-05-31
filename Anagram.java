@@ -21,7 +21,7 @@ public class Anagram{
 	while(true){
 	    System.out.print("16 characters: ");
 	    String word = sc.nextLine();
-	    word = sort(word);
+	    word = escWord(word);
 	    String result = findAnagram(word, hashDictionary);
 	    System.out.println(result);
 	}
@@ -79,7 +79,7 @@ public class Anagram{
 	return hashDictionary;
     }
 
-    public static String sort(String word){
+    public static String escWord(String word){
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
 	word = String.valueOf(letters);
