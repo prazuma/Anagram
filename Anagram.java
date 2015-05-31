@@ -82,9 +82,10 @@ public class Anagram{
     public static String sort(String word){
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
-	String sortedWord = String.valueOf(letters);
-	sortedWord = trimSpace(sortedWord);	
-	return sortedWord;
+	word = String.valueOf(letters);
+	word = word.toLowerCase();
+	String escapedWord = trimSpace(word);	
+	return escapedWord;
     }
 
     public static String trimSpace(String word){
