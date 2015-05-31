@@ -19,7 +19,7 @@ public class Anagram{
 	    System.out.print("16 characters: ");
 	    String word = sc.nextLine();
 	    word = escWord(word);
-	    String result = findAnagram(word, hashDictionary);
+	    String result = findAnagram(word);
 	    System.out.println(result);
 	}
     }
@@ -93,16 +93,16 @@ public class Anagram{
 	return list;
     }
 
-    public static boolean isMatch(String word, HashMap<String,ArrayList<String>> hashDictionary){
+    public static boolean isMatch(String word){
 	return hashDictionary.containsKey(word);
     }
 
-    public static String findAnagram(String word, HashMap<String, ArrayList<String>> hashDictionary){
+    public static String findAnagram(String word){
 	for(int i = word.length(); i > 0; i--){
 	    ArrayList<String> combinations = combination(word, word.length(), i);
 	    for(int j = 0; j < combinations.size(); j++){
 		String anagram = combinations.get(j);
-		if(isMatch(anagram, hashDictionary)){
+		if(isMatch(anagram)){
 		    return hashDictionary.get(anagram).get(0);
 		}
 	    }
