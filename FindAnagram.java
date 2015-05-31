@@ -1,18 +1,28 @@
 import java.util.*;
 
 public class FindAnagram{
-    HashMap<String, ArrayList<String>> hashDictionary;
+    public HashMap<String, ArrayList<String>> hashDictionary;
     
-    void FindAnagram(HashMap<String, ArrayList<String>> hashDictionary){
-	this.hashDictionary = hashDictionary;
+    public void FindAnagram(){
+	this.hashDictionary = new HashMap<String, ArrayList<String>>();
     }
 
-    public String findAnagram(String word){
+    public void setHashDictionary(HashMap<String, ArrayList<String>> hashDictionary){
+	hashDictionary = hashDictionary;
+    }
+
+    /*
+    public void setHashDictionary(HashMap<String, ArrayList<String>> hashDictionary){
+	hashDictionary = hashDictionary;
+    }
+    */
+    
+    public String findAnagram(String word, HashMap<String, ArrayList<String>> hashDictionary){
 	for(int i = word.length(); i > 0; i--){
 	    ArrayList<String> combinations = combination(word, word.length(), i);
 	    for(int j = 0; j < combinations.size(); j++){
 		String anagram = combinations.get(j);
-		if(isMatch(anagram)){
+		if(isMatch(anagram, hashDictionary)){
 		    return hashDictionary.get(anagram).get(0);
 		}
 	    }
@@ -69,7 +79,7 @@ public class FindAnagram{
 	return uniqueCombination;
     }
 
-    private boolean isMatch(String word){
+    private boolean isMatch(String word, HashMap<String, ArrayList<String>> hashDictionary){
 	return hashDictionary.containsKey(word);
     }
 }

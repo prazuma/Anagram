@@ -9,19 +9,25 @@ public class Anagram{
 	String fileName = "/usr/share/dict/words";
 	Setup setup = new Setup();
 	Escaper escaper = new Escaper();
+	FindAnagram findanagram = new FindAnagram();
+	
 	File file = new File("dictionary.txt");
         if(!(file.exists())){
 	    setup.createDictionaryFile(fileName);
 	}
+	//HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	hashDictionary = setup.setHashMap();
-	
+
+	//FindAnagram findanagram = new FindAnagram(hashDictionary);
+	findanagram.setHashDictionary(hashDictionary);
 	Scanner sc = new Scanner(System.in);
 	while(true){
 	    System.out.print("16 characters: ");
 	    String word = sc.nextLine();
 	    word = escaper.arrangeWord(word);
 	    word = escaper.trimSpace(word);
-	    String result = findAnagram(word);
+	    //String result = findAnagram(word);
+	    String result = findanagram.findAnagram(word, hashDictionary);
 	    System.out.println(result);
 	}
     }
