@@ -27,12 +27,6 @@ public class Anagram{
 	}
     }
 
-    public static void print(ArrayList<String> list){
-	for(int i = 0; i < list.size(); i++){
-	    System.out.println(list.get(i));
-	}
-    }
-
     public static ArrayList<String> readFile(String fileName){
 	ArrayList<String> list = new ArrayList<String>();
 	try {
