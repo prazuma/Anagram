@@ -2,7 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Setup{
-
+    Escaper escaper = new Escaper();
+    
     public void createDictionaryFile(String fileName){
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	try {
@@ -11,7 +12,7 @@ public class Setup{
 	    String word, key;
 	    ArrayList<String> values;
 	    while((word = br.readLine()) != null){
-		key = reArrangeWord(word);
+		key = escaper.arrangeWord(word);
 		if(hashDictionary.get(key) == null){
 		    values = new ArrayList<String>();
 		    values.add(word);
@@ -57,14 +58,15 @@ public class Setup{
 	    System.out.println("IOException: " + e);
 	}
     }
-
+    /*
     private String reArrangeWord(String word){
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
 	word = String.valueOf(letters);
 	return word.toLowerCase();
     }
-
+    */
+    /*
     private String trimSpace(String word){
 	if(word.length() == 1) return word;
 	int lastIndex = 0;
@@ -74,6 +76,7 @@ public class Setup{
 	}
 	return word;
     }
+    */
 
     public HashMap<String, ArrayList<String>> setHashMap(){
 	ArrayList<String> textList = readFile("dictionary.txt");
