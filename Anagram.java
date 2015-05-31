@@ -26,25 +26,6 @@ public class Anagram{
 	}
     }
 
-    public static String escWord(String word){
-	char[] letters = word.toCharArray();
-	Arrays.sort(letters);
-	word = String.valueOf(letters);
-	word = word.toLowerCase();
-	String escapedWord = trimSpace(word);	
-	return escapedWord;
-    }
-
-    public static String trimSpace(String word){
-	if(word.length() == 1) return word;
-	int lastIndex = 0;
-	if(word.startsWith(" ")){
-	    lastIndex = word.lastIndexOf(" ");
-	    word = word.substring(lastIndex + 1);
-	}
-	return word;
-    }
-    
     //nCr
     public static ArrayList<String> combination(String word, int n, int r){
 	if(r == 1){
