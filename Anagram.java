@@ -26,7 +26,9 @@ public class Anagram{
 
 	//arrange word
 	word = sort(word);
-	
+	String result = findAnagram(word, hashDictionary);
+	System.out.println(result);
+	/*
 	for(int i = word.length(); i > 0; i--){
 	    ArrayList<String> combinations = combination(word, word.length(), i);
 	    for(int j = 0; j < combinations.size(); j++){
@@ -37,6 +39,7 @@ public class Anagram{
 		}
 	    }
 	}
+	*/
     }
 
     public static void print(ArrayList<String> list){
@@ -110,7 +113,6 @@ public class Anagram{
     }
     
     //nCr
-    //TODO: 今度staticじゃないのにする
     public static ArrayList<String> combination(String word, int n, int r){
 	if(r == 1){
 	    ArrayList<String> list = new ArrayList<String>();
@@ -162,5 +164,18 @@ public class Anagram{
 
     public static boolean isMatch(String word, HashMap<String,ArrayList<String>> hashDictionary){
 	return hashDictionary.containsKey(word);
+    }
+
+    public static String findAnagram(String word, HashMap<String, ArrayList<String>> hashDictionary){
+	for(int i = word.length(); i > 0; i--){
+	    ArrayList<String> combinations = combination(word, word.length(), i);
+	    for(int j = 0; j < combinations.size(); j++){
+		String anagram = combinations.get(j);
+		if(isMatch(anagram, hashDictionary)){
+		    return hashDictionary.get(anagram).get(0);
+		}
+	    }
+	}
+	return "NO RESULTS";
     }
 }
