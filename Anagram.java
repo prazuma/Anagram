@@ -8,6 +8,7 @@ public class Anagram{
 	
 	String fileName = "/usr/share/dict/words";
 	Setup setup = new Setup();
+	Escaper escaper = new Escaper();
 	File file = new File("dictionary.txt");
         if(!(file.exists())){
 	    setup.createDictionaryFile(fileName);
@@ -18,7 +19,8 @@ public class Anagram{
 	while(true){
 	    System.out.print("16 characters: ");
 	    String word = sc.nextLine();
-	    word = escWord(word);
+	    word = escaper.arrangeWord(word);
+	    word = escaper.trimSpace(word);
 	    String result = findAnagram(word);
 	    System.out.println(result);
 	}
