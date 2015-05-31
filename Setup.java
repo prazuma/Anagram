@@ -58,25 +58,6 @@ public class Setup{
 	    System.out.println("IOException: " + e);
 	}
     }
-    /*
-    private String reArrangeWord(String word){
-	char[] letters = word.toCharArray();
-	Arrays.sort(letters);
-	word = String.valueOf(letters);
-	return word.toLowerCase();
-    }
-    */
-    /*
-    private String trimSpace(String word){
-	if(word.length() == 1) return word;
-	int lastIndex = 0;
-	if(word.startsWith(" ")){
-	    lastIndex = word.lastIndexOf(" ");
-	    word = word.substring(lastIndex + 1);
-	}
-	return word;
-    }
-    */
 
     public HashMap<String, ArrayList<String>> setHashMap(){
 	ArrayList<String> textList = readFile("dictionary.txt");
