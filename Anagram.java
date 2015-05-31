@@ -16,16 +16,14 @@ public class Anagram{
 	ArrayList<String> textList = readFile("test.txt");
 	
 	//dictionary.txt -> HashMap
-	/*
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	hashDictionary = setHashMap(textList);
-	*/
+
 	Scanner sc = new Scanner(System.in);
+	//String word = "lameiwe";//キーボード入力にする（優先度最低）
+	System.out.print("16 characters: ");
+	String word = sc.nextLine();
 	
-	String word = "lameiwe";//キーボード入力にする（優先度最低）
-	//String word = sc.nextLine();
-	//System.out.println(word);
-	/*
 	word = sort(word);
 	for(int i = word.length() - 1; i >= 0; i--){
 	    ArrayList<String> combinations = combination(word, word.length(), i);
@@ -37,7 +35,6 @@ public class Anagram{
 		}
 	    }
 	}
-	*/
     }
 
     public static void print(ArrayList<String> list){
