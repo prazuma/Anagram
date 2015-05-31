@@ -7,20 +7,10 @@ public class Anagram{
     public static void main(String[] args){
 	
 	String fileName = "/usr/share/dict/words";
-	File file = new File("dictionary.txt");
 	Setup setup = new Setup();
         if(!(file.exists())){
 	    setup.createDictionaryFile(fileName);
 	}
-	
-	//dictionary.txt -> HashMap
-	/*
-	  mainでは一回しか使わないからなー…setupに回したい
-	 */
-	//ArrayList<String> textList = readFile("dictionary.txt");
-	//HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
-	//hashDictionary = setHashMap(textList);
-
 	hashDictionary = setup.setHashMap();
 	
 	Scanner sc = new Scanner(System.in);
@@ -31,52 +21,6 @@ public class Anagram{
 	    String result = findAnagram(word, hashDictionary);
 	    System.out.println(result);
 	}
-    }
-
-    public static ArrayList<String> readFile(String fileName){
-	ArrayList<String> list = new ArrayList<String>();
-	try {
-	    FileReader fr = new FileReader(fileName);
-	    BufferedReader br = new BufferedReader(fr);
-	    String str;
-	    while((str = br.readLine()) != null){
-		list.add(str);
-	    }
-	    br.close();
-	} catch (IOException e) {
-	    System.out.println("IOException: " + e);
-	}
-	return list;
-    }
-    
-    public static HashMap<String, ArrayList<String>> setHashMap(ArrayList<String> textList){
-	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
-	int i = 0;
-	String key = "";
-	ArrayList<String> elements = new ArrayList<String>();
-	String element = "";
-	boolean isKey = false;
-	while(i < textList.size()){
-	    element = textList.get(i++);
-	    if(element.equals("0")){
-		isKey = true;
-		if(!(key.equals(""))){
-		    ArrayList<String> copy = new ArrayList<String>();
-		    copy.addAll(elements);
-		    hashDictionary.put(key, copy);
-		    elements.clear();
-		    key = "";
-		}
-		continue;
-	    }
-	    if(isKey){
-		key = element;
-		isKey = false;
-	    } else {
-		elements.add(element);
-	    }
-	}
-	return hashDictionary;
     }
 
     public static String escWord(String word){
