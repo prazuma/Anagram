@@ -3,9 +3,8 @@ import java.io.*;
 
 public class Anagram{
     public static void main(String[] args){
-
+	
 	String fileName = "/usr/share/dict/words";
-
 	File file = new File("dictionary.txt");
         if(!(file.exists())){
 	    Setup setup = new Setup();
@@ -18,28 +17,14 @@ public class Anagram{
 	//dictionary.txt -> HashMap
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	hashDictionary = setHashMap(textList);
-
-	//input word
 	Scanner sc = new Scanner(System.in);
-	System.out.print("16 characters: ");
-	String word = sc.nextLine();
-
-	//arrange word
-	word = sort(word);
-	String result = findAnagram(word, hashDictionary);
-	System.out.println(result);
-	/*
-	for(int i = word.length(); i > 0; i--){
-	    ArrayList<String> combinations = combination(word, word.length(), i);
-	    for(int j = 0; j < combinations.size(); j++){
-		String anagram = combinations.get(j);
-		if(isMatch(anagram, hashDictionary)){
-		    System.out.println(hashDictionary.get(anagram).get(0));
-		    return;
-		}
-	    }
+	while(true){
+	    System.out.print("16 characters: ");
+	    String word = sc.nextLine();
+	    word = sort(word);
+	    String result = findAnagram(word, hashDictionary);
+	    System.out.println(result);
 	}
-	*/
     }
 
     public static void print(ArrayList<String> list){
