@@ -4,7 +4,7 @@
 ## 使い方
 始め方
  ```
- $ javac Anagram.java
+ $ javac Anagram.java (Only once)
  $ java Anagram
  $ [16 characters]: ○○…
  $ [results]
