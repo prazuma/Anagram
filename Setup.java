@@ -58,14 +58,14 @@ public class Setup{
 	}
     }
 
-    public String reArrangeWord(String word){
+    private String reArrangeWord(String word){
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
 	word = String.valueOf(letters);
 	return word.toLowerCase();
     }
 
-    public String trimSpace(String word){
+    private String trimSpace(String word){
 	if(word.length() == 1) return word;
 	int lastIndex = 0;
 	if(word.startsWith(" ")){
@@ -73,5 +73,56 @@ public class Setup{
 	    word = word.substring(lastIndex + 1);
 	}
 	return word;
+    }
+
+    public HashMap<String, ArrayList<String>> setHashMap(){
+	ArrayList<String> textList = readFile("dictionary.txt");
+	return convertHashMap(textList);
+    }
+
+    private ArrayList<String> readFile(String fileName){
+	ArrayList<String> list = new ArrayList<String>();
+	try {
+	    FileReader fr = new FileReader(fileName);
+	    BufferedReader br = new BufferedReader(fr);
+	    String str;
+	    while((str = br.readLine()) != null){
+		list.add(str);
+	    }
+	    br.close();
+	} catch (IOException e) {
+	    System.out.println("IOException: " + e);
+	}
+	return list;
+    }
+    
+    private HashMap<String, ArrayList<String>> convertHashMap(ArrayList<String> textList){
+	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	int i = 0;
+	String key = "";
+	ArrayList<String> elements = new ArrayList<String>();
+	String element = "";
+	boolean isKey = false;
+	while(i < textList.size()){
+	    element = textList.get(i++);
+	    if(element.equals("0")){
+		isKey = true;
+		if(!(key.equals(""))){
+		    ArrayList<String> copy = new ArrayList<String>();
+		    copy.addAll(elements);
+		    hashDictionary.put(key, copy);
+		    elements.clear();
+		    key = "";
+		}
+		continue;
+	    }
+	    if(isKey){
+		key = element;
+		isKey = false;
+	    } else {
+		elements.add(element);
+	    }
+	}
+	return hashDictionary;
     }
 }

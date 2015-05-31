@@ -2,21 +2,27 @@ import java.util.*;
 import java.io.*;
 
 public class Anagram{
+    static HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();;
+    
     public static void main(String[] args){
 	
 	String fileName = "/usr/share/dict/words";
 	File file = new File("dictionary.txt");
+	Setup setup = new Setup();
         if(!(file.exists())){
-	    Setup setup = new Setup();
 	    setup.createDictionaryFile(fileName);
 	}
-
-	//read dictionary.txt
-	ArrayList<String> textList = readFile("dictionary.txt");
-
+	
 	//dictionary.txt -> HashMap
-	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
-	hashDictionary = setHashMap(textList);
+	/*
+	  mainでは一回しか使わないからなー…setupに回したい
+	 */
+	//ArrayList<String> textList = readFile("dictionary.txt");
+	//HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	//hashDictionary = setHashMap(textList);
+
+	hashDictionary = setup.setHashMap();
+	
 	Scanner sc = new Scanner(System.in);
 	while(true){
 	    System.out.print("16 characters: ");
