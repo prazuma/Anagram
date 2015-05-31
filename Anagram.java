@@ -5,27 +5,29 @@ public class Anagram{
     public static void main(String[] args){
 
 	String fileName = "/usr/share/dict/words";
-	/*
+
 	File file = new File("dictionary.txt");
         if(!(file.exists())){
 	    Setup setup = new Setup();
 	    setup.createDictionaryFile(fileName);
 	}
-	*/
+
 	//read dictionary.txt
-	ArrayList<String> textList = readFile("test.txt");
-	
+	ArrayList<String> textList = readFile("dictionary.txt");
+
 	//dictionary.txt -> HashMap
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	hashDictionary = setHashMap(textList);
 
+	//input word
 	Scanner sc = new Scanner(System.in);
-	//String word = "lameiwe";//キーボード入力にする（優先度最低）
 	System.out.print("16 characters: ");
 	String word = sc.nextLine();
-	
+
+	//arrange word
 	word = sort(word);
-	for(int i = word.length() - 1; i >= 0; i--){
+	
+	for(int i = word.length(); i > 0; i--){
 	    ArrayList<String> combinations = combination(word, word.length(), i);
 	    for(int j = 0; j < combinations.size(); j++){
 		String anagram = combinations.get(j);
@@ -46,12 +48,11 @@ public class Anagram{
     public static ArrayList<String> readFile(String fileName){
 	ArrayList<String> list = new ArrayList<String>();
 	try {
-	    FileReader filereader = new FileReader("test.txt");
-	    BufferedReader br = new BufferedReader(filereader);
-	    String str = br.readLine();
-	    while(str != null){
+	    FileReader fr = new FileReader(fileName);
+	    BufferedReader br = new BufferedReader(fr);
+	    String str;
+	    while((str = br.readLine()) != null){
 		list.add(str);
-		str = br.readLine();
 	    }
 	    br.close();
 	} catch (IOException e) {
@@ -67,7 +68,6 @@ public class Anagram{
 	ArrayList<String> elements = new ArrayList<String>();
 	String element = "";
 	boolean isKey = false;
-	
 	while(i < textList.size()){
 	    element = textList.get(i++);
 	    if(element.equals("0")){

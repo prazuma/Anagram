@@ -38,7 +38,7 @@ public class Setup{
 	    }
 	}
 	sb.append("0");
-	createFile("test2.txt", sb.toString());
+	createFile("dictionary.txt", sb.toString());
     }
 
     private void createFile(String fileName){
