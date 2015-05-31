@@ -61,9 +61,8 @@ public class Setup{
     public String sort(String word){
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
-	String sortedWord = String.valueOf(letters);
-	sortedWord = trimSpace(sortedWord);
-	return sortedWord;
+	word = String.valueOf(letters);
+	return word.toLowerCase();
     }
 
     public String trimSpace(String word){
