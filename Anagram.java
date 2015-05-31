@@ -4,29 +4,28 @@ import java.io.*;
 public class Anagram{
     public static void main(String[] args){
 
-	String fileNameTest = "test.txt";
 	String fileName = "/usr/share/dict/words";
-	
+	/*
 	File file = new File("dictionary.txt");
         if(!(file.exists())){
 	    Setup setup = new Setup();
 	    setup.createDictionaryFile(fileName);
 	}
-
-
-	/*
-	//dictionary.txtの読込み
-	ArrayList<String> textList = readFile("dictionary.txt");
+	*/
+	//read dictionary.txt
+	ArrayList<String> textList = readFile("test.txt");
 	
-	//TODO: dictionary.txtからHashMapをつくる
+	//dictionary.txt -> HashMap
+	/*
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
 	hashDictionary = setHashMap(textList);
-
-
-	//TODO: words.txtからdictionary.txtをつくる
-	createDictionaryFile("test.txt");
-
+	*/
+	Scanner sc = new Scanner(System.in);
+	
 	String word = "lameiwe";//キーボード入力にする（優先度最低）
+	//String word = sc.nextLine();
+	//System.out.println(word);
+	/*
 	word = sort(word);
 	for(int i = word.length() - 1; i >= 0; i--){
 	    ArrayList<String> combinations = combination(word, word.length(), i);
@@ -45,6 +44,23 @@ public class Anagram{
 	for(int i = 0; i < list.size(); i++){
 	    System.out.println(list.get(i));
 	}
+    }
+
+    public static ArrayList<String> readFile(String fileName){
+	ArrayList<String> list = new ArrayList<String>();
+	try {
+	    FileReader filereader = new FileReader("test.txt");
+	    BufferedReader br = new BufferedReader(filereader);
+	    String str = br.readLine();
+	    while(str != null){
+		list.add(str);
+		str = br.readLine();
+	    }
+	    br.close();
+	} catch (IOException e) {
+	    System.out.println("IOException: " + e);
+	}
+	return list;
     }
     
     public static HashMap<String, ArrayList<String>> setHashMap(ArrayList<String> textList){
