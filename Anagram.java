@@ -8,6 +8,7 @@ public class Anagram{
 	
 	String fileName = "/usr/share/dict/words";
 	Setup setup = new Setup();
+	File file = new File("dictionary.txt");
         if(!(file.exists())){
 	    setup.createDictionaryFile(fileName);
 	}
