@@ -1,21 +1,6 @@
 import java.util.*;
 
 public class FindAnagram{
-    public HashMap<String, ArrayList<String>> hashDictionary;
-    
-    public void FindAnagram(){
-	this.hashDictionary = new HashMap<String, ArrayList<String>>();
-    }
-
-    public void setHashDictionary(HashMap<String, ArrayList<String>> hashDictionary){
-	hashDictionary = hashDictionary;
-    }
-
-    /*
-    public void setHashDictionary(HashMap<String, ArrayList<String>> hashDictionary){
-	hashDictionary = hashDictionary;
-    }
-    */
     
     public String findAnagram(String word, HashMap<String, ArrayList<String>> hashDictionary){
 	for(int i = word.length(); i > 0; i--){
