@@ -11,7 +11,7 @@ public class Setup{
 	    String word, key;
 	    ArrayList<String> values;
 	    while((word = br.readLine()) != null){
-		key = sort(word);
+		key = reArrangeWord(word);
 		if(hashDictionary.get(key) == null){
 		    values = new ArrayList<String>();
 		    values.add(word);
@@ -58,7 +58,7 @@ public class Setup{
 	}
     }
 
-    public String sort(String word){
+    public String reArrangeWord(String word){
 	char[] letters = word.toCharArray();
 	Arrays.sort(letters);
 	word = String.valueOf(letters);
