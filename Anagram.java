@@ -2,8 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class Anagram{
-    static HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();;
-    
     public static void main(String[] args){
 	String fileName = "/usr/share/dict/words";
 	Setup setup = new Setup();
@@ -14,7 +12,7 @@ public class Anagram{
         if(!(file.exists())){
 	    setup.createDictionaryFile(fileName);
 	}
-	hashDictionary = setup.setHashMap();
+	HashMap<String, ArrayList<String>> hashDictionary = setup.setHashMap();
 
 	Scanner sc = new Scanner(System.in);
 	while(true){
