@@ -2,10 +2,10 @@ import java.util.*;
 import java.io.*;
 
 public class Setup{
-    Escaper escaper = new Escaper();
     
     public void createDictionaryFile(String fileName){
 	HashMap<String, ArrayList<String>> hashDictionary = new HashMap<String, ArrayList<String>>();
+	Escaper escaper = new Escaper();
 	try {
 	    FileReader fr = new FileReader(fileName);
 	    BufferedReader br = new BufferedReader(fr);
